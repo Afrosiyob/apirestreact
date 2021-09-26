@@ -11,6 +11,7 @@ const sagaMiddleware = createSagaMiddleware();
 
 const middlewares = [ sagaMiddleware ];
 
+
 if ( process.env.NODE_ENV === `development` ) {
     const { logger } = require( `redux-logger` );
     middlewares.push( logger );
