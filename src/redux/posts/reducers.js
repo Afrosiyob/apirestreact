@@ -19,6 +19,10 @@ export const postReducer = ( state = initialState, { type, payload } ) => {
             return { ...state, loading: true }
         case POST_POSTS_SUCCESS:
             return { ...state, loading: false, data: [ ...state.data, payload ] }
+        // case POST_DELETE_SUCCESS:
+        //     return { ...state, loading: false, data: state.data.filter( el => el.id === payload.data.id ) }
+        // case POST_EDIT_SUCCESS:
+        //     return { ...state, loading: false, data: state.data.map(el=>el.id===payload.data.id? payload.data.id: el) }
         case POST_POSTS_ERROR:
             return { ...state, loading: false, error: payload }
         default:
