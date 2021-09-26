@@ -39,17 +39,13 @@ const fetchPostPosts = async ( request ) =>
 
 
 function* workPostPosts ( { payload } ) {
-
     const request = payload
-
     const { response, error } = yield call( fetchPostPosts, request )
-
     if ( response ) {
         yield put( postPostsSuccess( response?.data ) )
     } else {
         yield put( postPostsError( error ) )
     }
-
 }
 
 

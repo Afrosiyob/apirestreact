@@ -15,8 +15,6 @@ const PostsTwo = () => {
     }, [ dispatch ] )
 
 
-    console.log( data );
-
     const { register, handleSubmit, formState: { errors } } = useForm();
 
     const onSubmit = data => {
