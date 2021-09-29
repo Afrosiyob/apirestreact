@@ -1,5 +1,5 @@
 import { applyMiddleware, compose, createStore } from "redux";
-
+import { composeWithDevTools } from 'redux-devtools-extension';
 import createSagaMiddleware from "redux-saga";
 
 import rootSaga from "../sagas";
@@ -17,7 +17,10 @@ if ( process.env.NODE_ENV === `development` ) {
     middlewares.push( logger );
 }
 
-export const store = compose( applyMiddleware( ...middlewares ) )( createStore )( rootReducer );
+export const store = compose( composeWithDevTools(
+    applyMiddleware( ...middlewares )
+    // other store enhancers if any
+) )( createStore )( rootReducer );
 
 
 sagaMiddleware.run( rootSaga );
