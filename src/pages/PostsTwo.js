@@ -14,6 +14,9 @@ const PostsTwo = () => {
         dispatch( getPosts() )
     }, [ dispatch ] )
 
+    console.log( data );
+    console.log( error );
+
 
     const { register, handleSubmit, formState: { errors } } = useForm();
 

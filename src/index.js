@@ -6,6 +6,8 @@ import reportWebVitals from './reportWebVitals';
 import { BrowserRouter as Router } from 'react-router-dom';
 import { ReduxProvider, TodosProvider } from './provider/provider';
 
+import 'antd/dist/antd.css'; // or 'antd/dist/antd.less'
+
 
 ReactDOM.render(
   <React.StrictMode>
