@@ -6,7 +6,7 @@ import Routes from "./router/Routes";
 
 import { MailOutlined, AppstoreOutlined } from '@ant-design/icons';
 import { me } from "./redux/auth/actions";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom"
 
 
@@ -26,6 +26,8 @@ function App () {
   } )
 
 
+  const { data } = useSelector( state => state.authReducer )
+
   const handleClick = e => {
     console.log( 'click ', e );
     setState( ( prevState ) => ( {
@@ -37,27 +39,39 @@ function App () {
   const { current } = state
 
   return (
+
     <div>
+
 
       <Row gutter={ [ 8, 8 ] } justify="center" >
         <Col md={ 24 } >
-          <Menu onClick={ handleClick } selectedKeys={ [ current ] } mode="horizontal">
-            <Menu.Item key="posts" icon={ <MailOutlined /> }>
-              <Link to="/posts"> posts </Link>
-            </Menu.Item>
-            <Menu.Item key="poststwo" icon={ <AppstoreOutlined /> }>
-              <Link to="/poststwo"> poststwo </Link>
-            </Menu.Item>
-            <Menu.Item key="todos" icon={ <AppstoreOutlined /> }>
-              <Link to="/todos"> todos </Link>
-            </Menu.Item>
-            <Menu.Item key="auth" icon={ <AppstoreOutlined /> }>
-              <Link to="/auth"> Login </Link>
-            </Menu.Item>
-            <Menu.Item key="registration" icon={ <AppstoreOutlined /> }>
-              <Link to="/registration"> Registration </Link>
-            </Menu.Item>
-          </Menu>
+          <Row>
+            <Col md={ 18 }>
+              <Menu onClick={ handleClick } selectedKeys={ [ current ] } mode="horizontal">
+                <Menu.Item key="posts" icon={ <MailOutlined /> }>
+                  <Link to="/posts"> posts </Link>
+                </Menu.Item>
+                <Menu.Item key="poststwo" icon={ <AppstoreOutlined /> }>
+                  <Link to="/poststwo"> poststwo </Link>
+                </Menu.Item>
+                <Menu.Item key="todos" icon={ <AppstoreOutlined /> }>
+                  <Link to="/todos"> todos </Link>
+                </Menu.Item>
+                <Menu.Item key="users" icon={ <AppstoreOutlined /> }>
+                  <Link to="/users"> users </Link>
+                </Menu.Item>
+                <Menu.Item key="auth" icon={ <AppstoreOutlined /> }>
+                  <Link to="/auth"> Login </Link>
+                </Menu.Item>
+                <Menu.Item key="registration" icon={ <AppstoreOutlined /> }>
+                  <Link to="/registration"> Registration </Link>
+                </Menu.Item>
+              </Menu>
+            </Col>
+            <Col md={ 6 }>
+              <span> { data?.username } | { data?.role } </span>
+            </Col>
+          </Row>
         </Col>
         <Col md={ 24 }><Routes /></Col>
       </Row>

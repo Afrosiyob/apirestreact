@@ -2,7 +2,7 @@ import { all, call, fork, takeEvery, put } from "@redux-saga/core/effects";
 import { message } from "antd";
 import { LOGIN, ME, REG } from "../actions";
 import { fetchLogin, fetchMe, fetchReg } from "../service/api.service";
-import { loginError, loginSuccess, meError, regSuccess } from "./actions";
+import { loginError, loginSuccess, meError, meSuccess, regSuccess } from "./actions";
 
 function* watchLogin () {
     yield takeEvery( LOGIN, workLogin )
@@ -54,6 +54,8 @@ function* workMe ( { payload } ) {
 
     if ( response ) {
         console.log( response );
+
+        yield put( meSuccess( response?.data?.data?.user_info ) )
 
     } else {
         message.error( error.response.data.message )
